@@ -11,6 +11,7 @@ urlpatterns = [
 
 urlpatterns += [
     url(r'^customer/(?P<pk>[0-9]+)/$', views.CustomerDetail.as_view()),
-    url(r'^customer/$', views.CustomerList.as_view()),
-    url(r'^customer/orders/(?P<pk>[0-9]+)/$', views.CustomerOrderList.as_view()),
+    url(r'^customer/list$', views.CustomerList.as_view()),
+    url(r'^customer/new$', views.NewCustomer.as_view()),
+    url(r'^customer/(?P<pk>[0-9]+)/orders/$', views.CustomerOrderList.as_view()),
 ]

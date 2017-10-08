@@ -8,6 +8,13 @@ class CustomerSerializers(serializers.ModelSerializer):
         fields = ( 'id', 'name', 'contact', 'address')
 
 
+class CustomerListSerializers(serializers.ModelSerializer):
+
+    class Meta:
+        model = Customer
+        fields = ('id','name')
+
+
 class OrderSerializers(serializers.ModelSerializer):
     customer = serializers.CharField(source='customer.name', read_only=True)
 
