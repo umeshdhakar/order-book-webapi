@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .models import Order, Customer
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
-from .serializers import OrderSerializers, DuePaymentOrderSerializers, PendingOrderSerializers, CustomerSerializers
+from .serializers import OrderSerializers, DuePaymentOrderSerializers, PendingOrderSerializers, CustomerSerializers, NewOrderSerializers
 # Create your views here.
 
 class CustomerDetail(generics.RetrieveUpdateAPIView):
@@ -18,9 +18,9 @@ class OrderDetail(generics.RetrieveUpdateAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderSerializers
 
-class OrderList(generics.ListCreateAPIView):
+class NewOrder(generics.CreateAPIView):
     queryset = Order.objects.all()
-    serializer_class = OrderSerializers
+    serializer_class = NewOrderSerializers
     # permission_classes = (IsAuthenticated,)
 
 class PendingOrderList(generics.ListAPIView):

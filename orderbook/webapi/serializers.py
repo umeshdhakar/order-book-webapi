@@ -9,19 +9,30 @@ class CustomerSerializers(serializers.ModelSerializer):
 
 
 class OrderSerializers(serializers.ModelSerializer):
+    customer = serializers.CharField(source='customer.name', read_only=True)
 
     class Meta:
         model = Order
-        fields = ('id', 'type', 'firm', 'description', 'order_date', 'total', 'status', 'payment', 'customer')
+        fields = ('id', 'type', 'customer', 'firm', 'description', 'order_date', 'total', 'status', 'payment')
+
+
+class NewOrderSerializers(serializers.ModelSerializer):
+
+    class Meta:
+        model = Order
+        fields = ('id', 'type', 'customer', 'firm', 'description', 'order_date', 'total', 'status', 'payment')
+
 
 class PendingOrderSerializers(serializers.ModelSerializer):
+    customer = serializers.CharField(source='customer.name', read_only=True)
 
     class Meta:
         model = Order
-        fields = ('id', 'type', 'firm', 'status')
+        fields = ('id', 'type', 'firm', 'status', 'customer')
 
 class DuePaymentOrderSerializers(serializers.ModelSerializer):
+    customer = serializers.CharField(source='customer.name', read_only=True)
 
     class Meta:
         model = Order
-        fields = ('id', 'type', 'firm', 'due')
+        fields = ('id', 'type', 'firm', 'due', 'customer')
