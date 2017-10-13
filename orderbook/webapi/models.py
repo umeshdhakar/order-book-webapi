@@ -19,7 +19,7 @@ class Order(models.Model):
     discount = models.IntegerField(null=True)
     advance = models.IntegerField(null=True)
     due = models.IntegerField(null=True)
-    status = models.CharField(max_length=10, null=True)
+    status = models.CharField(default='pending', max_length=10, null=True)
     payment = models.CharField(max_length=10, null=True)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, default=1)
 
