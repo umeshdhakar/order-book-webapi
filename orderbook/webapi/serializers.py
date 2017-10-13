@@ -27,7 +27,7 @@ class NewOrderSerializers(serializers.ModelSerializer):
 
     class Meta:
         model = Order
-        fields = ('id', 'type', 'customer', 'firm', 'description', 'order_date', 'total', 'status', 'payment')
+        fields = ('id', 'type', 'customer', 'firm', 'description', 'order_date', 'total', 'discount', 'advance', 'due', 'status', 'payment')
 
 
 class PendingOrderSerializers(serializers.ModelSerializer):
