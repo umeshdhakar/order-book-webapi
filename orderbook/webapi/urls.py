@@ -1,4 +1,5 @@
 from django.conf.urls import url
+from rest_framework_jwt.views import obtain_jwt_token
 from . import views
 
 urlpatterns = [
@@ -14,4 +15,8 @@ urlpatterns += [
     url(r'^customer/list$', views.CustomerList.as_view()),
     url(r'^customer/new$', views.NewCustomer.as_view()),
     url(r'^customer/(?P<pk>[0-9]+)/orders/$', views.CustomerOrderList.as_view()),
+]
+
+urlpatterns += [
+    url(r'jwt-auth/$', obtain_jwt_token),
 ]

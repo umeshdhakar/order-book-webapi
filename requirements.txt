@@ -5,10 +5,12 @@ coreschema==0.0.4
 Django==1.11
 django-cors-headers==2.1.0
 djangorestframework==3.6.4
+djangorestframework-jwt==1.11.0
 idna==2.6
 itypes==1.1.0
 Jinja2==2.9.6
 MarkupSafe==1.0
+PyJWT==1.5.3
 pytz==2017.2
 requests==2.18.4
 uritemplate==3.0.0
