@@ -3,6 +3,7 @@ from .models import Order, Customer
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 from .serializers import OrderSerializers, DuePaymentOrderSerializers, PendingOrderSerializers, CustomerSerializers, NewOrderSerializers, CustomerListSerializers
+from django.db.models import Q
 # Create your views here.
 
 class CustomerDetail(generics.RetrieveUpdateAPIView):
@@ -28,11 +29,11 @@ class NewOrder(generics.CreateAPIView):
     # permission_classes = (IsAuthenticated,)
 
 class PendingOrderList(generics.ListAPIView):
-    queryset = Order.objects.filter(status='pending')
+    queryset = Order.objects.filter(Q(status='pending') | Q(status='progress')).order_by('-id') 
     serializer_class = PendingOrderSerializers
 
 class DuePaymentOrderList(generics.ListAPIView):
-    queryset = Order.objects.filter(payment='due')
+    queryset = Order.objects.filter(payment='due').order_by('-id') 
     serializer_class = DuePaymentOrderSerializers
 
 class CustomerOrderList(generics.ListAPIView):
@@ -41,5 +42,5 @@ class CustomerOrderList(generics.ListAPIView):
 
         def get_queryset(self):
             pk = self.kwargs['pk']
-            orders = Order.objects.filter(customer__id=pk)
+            orders = Order.objects.filter(customer__id=pk).order_by('-id') 
             return orders
