@@ -10,8 +10,8 @@ class Customer(models.Model):
         return self.name
 
 class Order(models.Model):
-    type = models.CharField(max_length=15)
-    firm = models.CharField(max_length=15)
+    type = models.CharField(max_length=30)
+    firm = models.CharField(max_length=30)
     description = models.CharField(max_length=100)
     order_date = models.DateField()
     delivery_date = models.DateField(null=True)
