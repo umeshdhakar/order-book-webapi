@@ -29,11 +29,11 @@ class NewOrder(generics.CreateAPIView):
     # permission_classes = (IsAuthenticated,)
 
 class PendingOrderList(generics.ListAPIView):
-    queryset = Order.objects.filter(Q(status='pending') | Q(status='progress')).order_by('-id') 
+    queryset = Order.objects.filter(Q(status='pending') | Q(status='progress')).order_by('id')
     serializer_class = PendingOrderSerializers
 
 class DuePaymentOrderList(generics.ListAPIView):
-    queryset = Order.objects.filter(payment='due').order_by('-id') 
+    queryset = Order.objects.filter(Q(payment='due') & Q(status='delivered')).order_by('id') 
     serializer_class = DuePaymentOrderSerializers
 
 class CustomerOrderList(generics.ListAPIView):
@@ -42,5 +42,5 @@ class CustomerOrderList(generics.ListAPIView):
 
         def get_queryset(self):
             pk = self.kwargs['pk']
-            orders = Order.objects.filter(customer__id=pk).order_by('-id') 
+            orders = Order.objects.filter(customer__id=pk).order_by('-id')
             return orders
