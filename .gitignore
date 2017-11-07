@@ -4,3 +4,4 @@ lib/
 pip-selfcheck.json
 orderbook/db.sqlite3
 *.pyc
+orderbook/webapi/migrations/
